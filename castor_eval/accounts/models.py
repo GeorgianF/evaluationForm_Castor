@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+import random
 
 # Create your models here.
 
@@ -9,9 +10,11 @@ class MyAccountManager(BaseUserManager):
             self, first_name, last_name, username, email, password=None):
         if not email:
             raise ValueError('User must have a email address')
-
-        if not username:
-            raise ValueError('User must have a username')
+        
+        username = first_name + "." + last_name  # Create username from first and last name
+        # Ensure username is unique (this is a simple example, you might need more complex logic)
+        while Account.objects.filter(username=username).exists():
+            username += str(random.randint(0, 9))
 
         user = self.model(
             email=self.normalize_email(email),
@@ -45,6 +48,7 @@ class MyAccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True, null=True)
     email = models.EmailField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=50)
 
