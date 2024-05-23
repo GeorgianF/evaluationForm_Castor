@@ -1,0 +1,26 @@
+{% if messages %}
+{% for message in messages %}
+
+<div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+    <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
+        <div class="toast alert-{{ message.tags }}" role="alert">
+            <div class="toast-header">
+                {% if message.tags == 'danger' %}
+                <strong class="me-auto text-{{ message.tags }}">Error!</strong>
+                {% elif message.tags == 'info' %}
+                <strong class="me-auto text-{{ message.tags }}">Information</strong>
+                {% elif message.tags == 'success' %}
+                <strong class="me-auto text-{{ message.tags }}">Success!</strong>
+                {% elif message.tags == 'warning' %}
+                <strong class="me-auto text-{{ message.tags }}">Warning</strong>
+                {% endif %}
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message.message }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}

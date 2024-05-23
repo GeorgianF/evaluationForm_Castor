@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/mdb-ui-kit/css/mdb.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="https://www.castoredc.com/wp-content/themes/castoredc/media/favicon/favicon.ico?v=2"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <link rel="shortcut icon" href="https://www.castoredc.com/wp-coscriptthemes/castoredc/media/favicon/favicon.ico?v=2"
         type="image/x-icon">
     <!-- font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -34,6 +39,12 @@
         </div>
     </section>
     <!-- END NAV BAR -->
+
+    <!-- Toasts Bootstrap -->
+
+    {% include 'includes/alerts.html' %}
+
+    <!-- End Toasts Bootstrap -->
 
     <!-- CONTENT -->
     <section class="vh-100 vw-100 d-flex justify-content-center">
@@ -75,6 +86,19 @@
         </footer>
     </section>
     <!-- END FOOTER -->
+
+    <!-- JS Toast -->
+    <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
+        });
+        toastList.forEach(function (toast) {
+            toast.show();
+        });
+    </script>
+    <!-- End JS toast -->
+
 </body>
 
 </html>
